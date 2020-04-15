@@ -30,6 +30,9 @@ const styles = () => ({
   tableCell: {
     padding: 10,
   },
+  tableRow: {
+    cursor: "pointer",
+  },
 });
 
 const columns = [
@@ -60,6 +63,10 @@ const GistsList = ({ allGists, readData, classes }) => {
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
+  };
+
+  const showDetailedGist = (gist) => {
+    console.log(gist);
   };
 
   const HeaderCell = ({ data }) => {
@@ -100,7 +107,12 @@ const GistsList = ({ allGists, readData, classes }) => {
           </TableHead>
           <TableBody>
             {rows.map((gist, index) => (
-              <TableRow key={"row-" + index}>
+              <TableRow
+                className={classes.tableRow}
+                hover
+                key={"row-" + index}
+                onClick={() => showDetailedGist(gist)}
+              >
                 <TableCell className={classes.tableCell}>
                   <img
                     alt={"avatar"}
