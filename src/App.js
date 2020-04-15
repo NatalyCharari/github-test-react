@@ -1,5 +1,6 @@
 import React from "react";
-import Navigation from "./components/Navigation";
+import Navigation from "./components/navigation";
+import GistsList from "./containers/gistsList";
 
 const App = () => {
   const appBarTitle = "React Test";
@@ -7,6 +8,7 @@ const App = () => {
     return (
       <div>
         <Navigation barTitle={appBarTitle} />
+        <GistsList />
       </div>
     );
   };
