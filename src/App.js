@@ -1,6 +1,7 @@
 import React from "react";
 import Navigation from "./components/navigation";
 import GistsList from "./containers/gistsList";
+import Gist from "./containers/gist"
 
 const App = () => {
   const appBarTitle = "React Test";
@@ -9,6 +10,7 @@ const App = () => {
       <div>
         <Navigation barTitle={appBarTitle} />
         <GistsList />
+        <Gist />
       </div>
     );
   };
