@@ -47,7 +47,14 @@ const columns = [
   { id: "created_date", label: "Creation Date", align: "center" },
 ];
 
-const GistsList = ({ allGists, readData, classes, show, selectGist }) => {
+const GistsTable = ({
+  allGists,
+  readData,
+  classes,
+  show,
+  selectGist,
+  className,
+}) => {
   const minRowsPerPage = 20;
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(minRowsPerPage);
@@ -96,7 +103,7 @@ const GistsList = ({ allGists, readData, classes, show, selectGist }) => {
         : allGists;
 
     return show ? (
-      <TableContainer className={classes.root}>
+      <TableContainer className={`${classes.root} ${className}`}>
         <Table aria-label="customized table">
           <TableHead>
             <TableRow>
@@ -154,18 +161,20 @@ const GistsList = ({ allGists, readData, classes, show, selectGist }) => {
   return renderList();
 };
 
-GistsList.defaultProps = {
+GistsTable.defaultProps = {
   allGists: [],
   readData: () => {},
   show: true,
   selectGist: () => {},
+  className: "",
 };
 
-GistsList.propTypes = {
+GistsTable.propTypes = {
   allGists: PropTypes.array,
   readData: PropTypes.func,
   show: PropTypes.bool,
   selectGist: PropTypes.func,
+  className: PropTypes.string,
 };
 
-export default withStyles(styles, { name: "GistsList" })(GistsList);
+export default withStyles(styles, { name: "GistsList" })(GistsTable);

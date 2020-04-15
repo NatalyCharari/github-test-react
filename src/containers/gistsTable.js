@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import GistsList from "../components/gistsList";
+import GistsTable from "../components/gistsTable";
 import { fetchGists, selectGist } from "../reducers/actions";
 
-export const GistsListContainer = (props) => {
-  return <GistsList {...props} />;
+export const GistsTableContainer = (props) => {
+  return <GistsTable {...props} />;
 };
 
 const mapStateToProps = ({ gistReducer }) => ({
@@ -14,7 +14,10 @@ const mapStateToProps = ({ gistReducer }) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   readData: () => dispatch(fetchGists()),
-  selectGist: gist => dispatch(selectGist(gist)),
+  selectGist: (gist) => dispatch(selectGist(gist)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(GistsListContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(GistsTableContainer);

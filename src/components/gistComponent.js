@@ -13,7 +13,7 @@ import PropTypes from "prop-types";
 
 const styles = () => ({
   root: {
-    height: "90vh",
+    height: "100%",
     position: "relative",
   },
   avatar: {},
