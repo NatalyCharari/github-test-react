@@ -8,13 +8,16 @@ export const GistContainer = (props) => {
   return <GistsComponent {...props} />;
 };
 
-const mapStateToProps = ({ gistReducer }) => ({
-  show: !!gistReducer.currentItem,
-  name: get(gistReducer.currentGist, 'name', ''),
-  avatarUrl: get(gistReducer.currentGist, 'avatarUrl', ''),
-  description: get(gistReducer.currentGist, 'description', ''),
-  creationDate: get(gistReducer.currentGist, 'creationDate', ''),
-});
+const mapStateToProps = ({ gistReducer }) => {
+  console.log(gistReducer)
+  return {
+    show: !!gistReducer.currentItem,
+    name: get(gistReducer.currentItem, "owner.login", ""),
+    avatarUrl: get(gistReducer.currentItem, "owner.avatar_url", ""),
+    description: get(gistReducer.currentItem, "description", ""),
+    creationDate: get(gistReducer.currentItem, "creationDate", ""),
+  };
+};
 
 const mapDispatchToProps = (dispatch) => ({
   readData: () => dispatch(fetchGists()),
