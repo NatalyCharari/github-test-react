@@ -23,14 +23,20 @@ const styles = () => ({
     margin: 0,
     width: "80%",
   },
+  listItem: {
+    "& p": {
+      wordBreak: "break-all",
+    },
+  },
 });
 
-const FilesRows = ({ files }) => {
+const FilesRows = ({ files, className }) => {
   const rows = [];
   Object.keys(files).forEach((key, index) => {
     rows.push(
       <ListItem key={"listItem-" + index}>
         <ListItemText
+          className={className}
           primary={files[key].filename}
           secondary={files[key].raw_url}
         />
@@ -52,7 +58,7 @@ const FilesList = ({ files, classes, show, deselectGist }) => {
           <CardContent>
             <Typography variant="h6">{"Files"}</Typography>
             <List className={classes.root}>
-              <FilesRows files={files} />
+              <FilesRows files={files} className={classes.listItem} />
             </List>
           </CardContent>
         </CardActionArea>
