@@ -13,13 +13,13 @@ import PropTypes from "prop-types";
 
 const styles = () => ({
   root: {
-    height: "100vh",
+    height: "90vh",
     position: "relative",
   },
   avatar: {},
   card: {
     position: "absolute",
-    top: "40%",
+    top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
     margin: 0,

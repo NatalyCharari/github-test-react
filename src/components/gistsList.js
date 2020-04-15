@@ -16,7 +16,7 @@ import { withStyles } from "@material-ui/core/styles";
 const styles = () => ({
   root: {
     maxWidth: "91vw",
-    padding: "30px 70px",
+    padding: "1% 4%",
   },
   avatar: {
     width: 40,
