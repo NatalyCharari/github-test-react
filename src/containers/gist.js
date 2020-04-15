@@ -9,13 +9,14 @@ export const GistContainer = (props) => {
 };
 
 const mapStateToProps = ({ gistReducer }) => {
-  console.log(gistReducer)
+  console.log(gistReducer.currentItem)
   return {
     show: !!gistReducer.currentItem,
     name: get(gistReducer.currentItem, "owner.login", ""),
     avatarUrl: get(gistReducer.currentItem, "owner.avatar_url", ""),
     description: get(gistReducer.currentItem, "description", ""),
-    creationDate: get(gistReducer.currentItem, "creationDate", ""),
+    creationDate: get(gistReducer.currentItem, "created_at", ""),
+    repository: get(gistReducer.currentItem, "owner.html_url", ""),
   };
 };
 

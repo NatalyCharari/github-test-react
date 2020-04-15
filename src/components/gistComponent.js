@@ -13,14 +13,13 @@ import PropTypes from "prop-types";
 
 const styles = () => ({
   root: {
-    height: "70vh",
+    height: "100vh",
     position: "relative",
-    top: 30,
   },
   avatar: {},
   card: {
     position: "absolute",
-    top: "50%",
+    top: "40%",
     left: "50%",
     transform: "translate(-50%, -50%)",
     margin: 0,
@@ -35,6 +34,7 @@ const GistsComponent = ({
   classes,
   show,
   deselectGist,
+  repository,
 }) => {
   const goToTable = () => {
     deselectGist();
@@ -52,10 +52,20 @@ const GistsComponent = ({
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              {name}
+              {name || "Anonymus"}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
               {description}
+            </Typography>
+            <br />
+            <Typography variant="subtitle1">{"Creation Date"}</Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {creationDate}
+            </Typography>
+            <br />
+            <Typography variant="subtitle1">{"Repository"}</Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              <a href={repository}>{repository}</a>
             </Typography>
           </CardContent>
         </CardActionArea>
@@ -76,6 +86,7 @@ GistsComponent.defaultProps = {
   creationDate: "",
   show: false,
   deselectGist: () => {},
+  repository: "",
 };
 
 GistsComponent.propTypes = {
@@ -85,6 +96,7 @@ GistsComponent.propTypes = {
   creationDate: PropTypes.string,
   show: PropTypes.bool,
   deselectGist: PropTypes.func,
+  repository: PropTypes.string,
 };
 
 export default withStyles(styles, { name: "GistsComponent" })(GistsComponent);
