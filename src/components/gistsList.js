@@ -15,16 +15,20 @@ import { withStyles } from "@material-ui/core/styles";
 
 const styles = () => ({
   root: {
-    maxWidth: "90vw",
+    maxWidth: "91vw",
+    padding: "30px 70px",
   },
   avatar: {
-    width: 50,
-    height: 50,
+    width: 40,
+    height: 40,
     borderRadius: "50%",
   },
   container: {},
   descriptionColumn: {
     maxWidth: "40vw",
+  },
+  tableCell: {
+    padding: 10,
   },
 });
 
@@ -41,8 +45,9 @@ const columns = [
 ];
 
 const GistsList = ({ allGists, readData, classes }) => {
+  const minRowsPerPage = 10;
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(minRowsPerPage);
 
   useEffect(() => {
     readData();
@@ -67,6 +72,16 @@ const GistsList = ({ allGists, readData, classes }) => {
       </TableCell>
     );
   };
+
+  const BodyTextCell = ({ align, label }) => {
+    const alignTo = align || "left";
+    return (
+      <TableCell align={alignTo} className={classes.tableCell}>
+        {label}
+      </TableCell>
+    );
+  };
+
   const renderList = () => {
     const rows =
       rowsPerPage > 0
@@ -86,16 +101,16 @@ const GistsList = ({ allGists, readData, classes }) => {
           <TableBody>
             {rows.map((gist, index) => (
               <TableRow key={"row-" + index}>
-                <TableCell>
+                <TableCell className={classes.tableCell}>
                   <img
                     alt={"avatar"}
                     className={classes.avatar}
                     src={gist.owner.avatar_url}
                   />
                 </TableCell>
-                <TableCell>{gist.owner.login}</TableCell>
-                <TableCell>{gist.description}</TableCell>
-                <TableCell>{gist.created_at}</TableCell>
+                <BodyTextCell label={gist.owner.login} />
+                <BodyTextCell label={gist.description} />
+                <BodyTextCell align={"center"} label={gist.created_at} />
               </TableRow>
             ))}
           </TableBody>
@@ -107,7 +122,11 @@ const GistsList = ({ allGists, readData, classes }) => {
                 onChangeRowsPerPage={handleChangeRowsPerPage}
                 page={page}
                 rowsPerPage={rowsPerPage}
-                rowsPerPageOptions={[10, 20, { label: "All", value: -1 }]}
+                rowsPerPageOptions={[
+                  minRowsPerPage,
+                  minRowsPerPage * 2,
+                  { label: "All", value: -1 },
+                ]}
                 SelectProps={{
                   inputProps: { "aria-label": "rows per page" },
                   native: true,
