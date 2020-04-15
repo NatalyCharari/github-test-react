@@ -48,7 +48,7 @@ const columns = [
 ];
 
 const GistsList = ({ allGists, readData, classes, show, selectGist }) => {
-  const minRowsPerPage = 10;
+  const minRowsPerPage = 20;
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(minRowsPerPage);
 
